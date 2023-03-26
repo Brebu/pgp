@@ -1,0 +1,7 @@
+userId: John Doe <john.doe@example.com>
+folderPathGenerated: F:\pgp\input
+folderPathEncrypted: F:\pgp\encrypted
+folderPathDecrypted: F:\pgp\decrypted
+publicKey: F:\pgp\public.key
+privateKey: F:\pgp\private.key
+password: myPassphrase
