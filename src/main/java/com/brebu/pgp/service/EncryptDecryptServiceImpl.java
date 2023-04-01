@@ -62,7 +62,7 @@ public class EncryptDecryptServiceImpl implements EncryptDecryptService {
                     encryptFormat.setKeyUserid(userId);
                     encryptFormat.setArmored(true);
                     // citește fișierele din folderPathGenerated, le criptează și le salvează în folderPathEncrypted
-                    from("file:" + folderPathGenerated + "?noop=true&delete=false&charset=utf-8")
+                    from("file:" + folderPathGenerated + "?noop=true&delete=false")
                             .marshal(encryptFormat)
                             .to("file:" + folderPathEncrypted + "?fileName=${file:name}.gpg")
                             .process(exchange -> latch.countDown());
@@ -104,7 +104,7 @@ public class EncryptDecryptServiceImpl implements EncryptDecryptService {
                     decryptFormat.setPassword(password);
                     decryptFormat.setArmored(true);
                     // citește fișierele din folderPathEncrypted, le decriptează și le salvează în folderPathDecrypted
-                    from("file:" + folderPathEncrypted + "?noop=true&delete=false&charset=utf-8")
+                    from("file:" + folderPathEncrypted + "?noop=true&delete=false")
                             .unmarshal(decryptFormat)
                             .to("file:" + folderPathDecrypted + "?fileName=${file:name.noext}.txt")
                             .process(exchange -> latch.countDown());
